@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar-dark .nav-link:hover {
+        background-color: #333; /* Darker shade of black for navbar links */
+      }
+      .list-group-item:hover {
+        background-color: #e5d9f2; /* Color for list group item on hover */
+        color: black; /* Ensure text is visible */
+      }
+      .btn {
+        margin-top: 20px;
+      }
+      .t {
+        color: aquamarine;
+        font-size: 1vw;
+      }
+      .alert{
+        margin-top: 20px;
+      }
+      .btn{
+        margin-top: 20px;
+      }
+      .bg-purple {
+        background-color: purple;
+      }
+      .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    .styled-table thead tr {
+      background-color: #009879;
+      color: #ffffff;
+      text-align: left;
+  }
+  .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+table{
+  width: 100%;
+}
+      
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark text-white">
+      <div class="container-fluid">
+        <a class="navbar-brand t" href="#">Employee management system</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-white active" aria-current="page" href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{% url 'add_employee' %}"
+                >Add emp</a
+              >
+            </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white " href="{% url 'employee_list' %}"
+                >Delete emp</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav><table class="styled-table">
+      <thead>
+        <tr>
+          <th style="text-align: left;">Name</th>
+          <th style="text-align: left;">ID</th>          
+          <th style="text-align: right;">address</th>
+          <th style="text-align: center;">phone_number</th>
+          <th style="text-align: center;">salary</th>
+          <th style="text-align: center;">designation</th>
+          <th style="text-align: center;">short_description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for employee in employees %}
+        <tr>
+          <td style="text-align: left;">{{ employee.name }}</td>
+          <td style="text-align: left;">{{ employee.id }}</td>
+          <td style="text-align: right;">{{ employee.address }}</td>
+          <td style="text-align: right;">{{ employee.phone_number}}</td>
+          <td style="text-align: right;">{{ employee.salary}}</td>
+          <td style="text-align: right;">{{ employee.designation }}</td>
+          <td style="text-align: right;">{{ employee.short_description}}</td>
+          
+        </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+    
+    <a href="{% url 'employee_list' %}"
+      ><button type="button" class="btn btn-danger">Remove</button></a
+    >
+    
+    <a href="{% url 'add_employee' %}"
+      ><button type="button" class="btn btn-success">Add Employee</button></a
+    >
+    
+    <div class="alert alert-primary" role="alert">
+      To Update any profile click on the remove button or on your url bar type "http://127.0.0.1:8000/update/" then the id for example "http://127.0.0.1:8000/update/4"
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
